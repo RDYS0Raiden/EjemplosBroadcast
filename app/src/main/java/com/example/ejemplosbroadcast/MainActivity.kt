@@ -17,8 +17,8 @@ private lateinit var binding: ActivityMainBinding
 //onReceive
 private val getAirplaneMode=object :BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        val ariplaneMode=intent.getBooleanExtra("state",false)
-        
+        val ariplaneMode=intent?.getBooleanExtra("state",false)
+
     }
 }
     override fun onCreate(savedInstanceState: Bundle?) {
