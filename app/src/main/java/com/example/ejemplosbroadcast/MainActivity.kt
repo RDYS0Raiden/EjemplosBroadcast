@@ -3,6 +3,7 @@ package com.example.ejemplosbroadcast
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejemplosbroadcast.databinding.ActivityMainBinding
@@ -17,8 +18,11 @@ private lateinit var binding: ActivityMainBinding
 //onReceive
 private val getAirplaneMode=object :BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        val ariplaneMode=intent?.getBooleanExtra("state",false)
-
+        val airplaneMode=intent?.getBooleanExtra("state",false)
+        airplaneMode?.let{
+            val message = if (it) "Modo Avion Activado" else "Modo Avion Desactivado"
+            binding.txtModoAvion.text=message
+        }
     }
 }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,14 +36,16 @@ private val getAirplaneMode=object :BroadcastReceiver() {
     override fun onStart() {
 
         super.onStart()
-
+        // registrar el BroadcastRecivier
+        registerReceiver(getAirplaneMode, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
     }
 
 
     override fun onStop() {
 
         super.onStop()
-
+        //para quitar el registro
+        unregisterReceiver(getAirplaneMode)
     }
 
 }
