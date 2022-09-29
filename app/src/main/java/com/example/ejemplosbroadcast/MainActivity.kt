@@ -46,6 +46,7 @@ private val getAirplaneMode=object :BroadcastReceiver() {
         super.onStop()
         //para quitar el registro
         unregisterReceiver(getAirplaneMode)
+        //:)
     }
 
 }
