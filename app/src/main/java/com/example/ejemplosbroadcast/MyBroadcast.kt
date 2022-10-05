@@ -17,11 +17,8 @@ class MyBroadcast : BroadcastReceiver(){
             Intent.ACTION_BATTERY_CHANGED-> showBatteryLevel(intent)
             
         }
+        //:)
     }
-
     private fun showBatteryLevel(intent: Intent) {
-
     }
-
-
 }
